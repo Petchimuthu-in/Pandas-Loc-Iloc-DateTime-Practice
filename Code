@@ -1,0 +1,26 @@
+import pandas as pd
+df = pd.read_csv("student_datetime.csv")
+
+print("Original Dataset:")
+print(df)
+
+print("\nStudents with Score greater than 80:")
+print(df.loc[df["Score"] > 80])
+
+print("\nFirst 4 Rows and First 3 Columns:")
+print(df.iloc[0:4, 0:3])
+
+df["Join_Date"] = pd.to_datetime(df["Join_Date"])
+
+print("\nJoin Date after DateTime Conversion:")
+print(df[["Name", "Join_Date"]])
+
+df["Year"] = df["Join_Date"].dt.year
+df["Month"] = df["Join_Date"].dt.month
+df["Day"] = df["Join_Date"].dt.day
+
+print("\nYear, Month and Day:")
+print(df[["Name", "Year", "Month", "Day"]])
+
+print("\nStudents Joined After May 2026:")
+print(df.loc[df["Join_Date"] > "2026-05-31"])
